@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Validar numeros</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+    </head>
+    <body>
+        <div id="espacio">
+        <center><h1>Validaciones</h1></center>
+            Numero primos :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="id_primo" name="id_primo" value="0" >&nbsp;&nbsp;
+            <input type="button" value="validar" onclick="validar()"><br>
+
+            Numero de cedula: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="id_cedula" name="id_cedula" value="0" >&nbsp;&nbsp;
+             <input type="button" value="validar" onclick="validarcedula()"><br>
+
+            Numero Hexadecimal: <input type="text" id="id_hexa" name="id_hexa" value="0000">&nbsp;&nbsp;
+            <input type="button" value="validar" onclick="Hexa()"><br>
+           
+        </div>
+        
+    </body>
+</html>
+<script>
+        
+  function validar()
+  {
+        var cadena = "";
+        cadena=document.getElementById("id_primo").value
+        var aux=2;
+        for(i=2; i<cadena; i++){
+            if(cadena%i == 0){
+                aux++;
+                break;
+            }
+        }
+        if(aux == 2){
+            alert("Es numero primo")
+          
+        }else{
+            alert("No es numero primo")          
+        }
+        
+  }
+
+   
+    function validarcedula()
+    {
+         var i;
+         var cadena="";
+         cadena = document.getElementById("id_cedula").value;
+         
+         var acumulado=0;
+         var instancia;
+         
+         for (i=1;i<=9;i++)
+         {
+          if (i%2!=0)
+          {
+           instancia=cadena.substring(i-1,i)*2;
+           if (instancia>9) instancia-=9;
+          }
+          else instancia=cadena.substring(i-1,i);
+          acumulado+=parseInt(instancia);
+         }
+         while (acumulado>0)
+          acumulado-=10;
+         if (cadena.substring(9,10)!=(acumulado*-1))
+         {
+          alert("Es numero de no cedula es correcto");
+       
+         }else{
+         alert("Es numero de cedula es correcto");
+        }
+   }
+
+function  Hexa () { 
+        var cadena = document.getElementById("id_hexa").value;
+        if(/^[0-9A-F]+$/i .test(cadena)){
+           alert("Es numero de Hexadecimal es correcto");
+
+        }else{
+             alert("Es numero de Hexadecimal es incorrecto");
+            
+        }
+      
+    }
+    
+</script>
